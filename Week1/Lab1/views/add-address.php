@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -17,7 +13,8 @@ and open the template in the editor.
 
         <?php
         require_once '../functions/dbconnect.php';
-        require_once '../functions/until.php';
+        require_once '../functions/util.php';
+        require_once '../classes/Validation.class.php';
 
         $fullName = filter_input(INPUT_POST, 'fullname');
         $email = filter_input(INPUT_POST, 'email');
@@ -26,22 +23,24 @@ and open the template in the editor.
         $state = filter_input(INPUT_POST, 'state');
         $zip = filter_input(INPUT_POST, 'zip');
 //        $birthDay = filter_input(INPUT_POST, 'birthday');
-        
-        $address = getAlladdress();
+
+//        $address = getAlladdress();
 
         if (isPostRequest()) {
 
             if (empty($fullName)) {
-                $message = 'FullName is Empty';
+                $message = 'Full Name is Empty';
             } else if (empty($email)) {
                 $message = 'Email is Empty';
-            } else if (empty($city)) {
+            } else if (empty($addressLine1)) {
+                $message = 'Address is Empty';
+            }else if (empty($city)) {
                 $message = 'City is Empty';
             } else if (empty($state)) {
                 $message = 'State is Empty';
             } else if (empty($zip)) {
                 $message = 'Zip Code is Empty';
-            } else if (addAddressInfo($fullName, $email, $addressLine1, $city, $state, $zip)) {
+            } else if (addAddressInfo($fullName,$email, $addressLine1, $city, $state, $zip)) {
                 $message = 'User Info Added';
                 $fullName = '';
                 $email = '';
@@ -49,11 +48,12 @@ and open the template in the editor.
                 $city = '';
                 $state = '';
                 $zip = '';
-//                $birthDay = '';
+////                $birthDay = '';
             }
         }
         // put your code here
         include '../templates/address-form.php';
+        include '../templates/message.php';
         ?>
     </body>
 </html>

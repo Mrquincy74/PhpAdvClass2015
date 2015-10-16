@@ -10,35 +10,40 @@
 </head>
 <body>
     <?php
-        require_once '../functions/dbconnect.php';
-        require_once '../functions/util.php';
-        $addresses = getAlladdress();
-        ?>
-    
-   <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Zip Code</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($results as $row): ?>
-            
+    require_once '../functions/dbconnect.php';
+    require_once '../functions/util.php';
+    $addresses = getAlladdress();
+    ?>
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <?php foreach ($row as $column): ?>
-                    
-                        <td><?php echo $column; ?></td>                    
-                    <?php endforeach; ?>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip Code</th>
+                    <th>Date of Birth</th> 
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>           
+                <?php foreach ($addresses as $row): ?>
+
+                    <tr>
+                        <?php foreach ($row as $column): ?>
+
+                            <td><?php echo $column; ?></td>                    
+                        <?php endforeach; ?>
+                    </tr>
+                <?php endforeach; ?>                
+            </tbody>
+        </table>
+    </div>
+
     <br /><br />  
 </body>
 </html>

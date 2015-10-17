@@ -44,15 +44,15 @@
 
             if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
                 $message = 'Data was added';
-          }
+            }
         }
         ?>
         <?php
-         $db = dbconnect();
-        /*$stmt selsect all from test table 
+        $db = dbconnect();
+        /* $stmt selsect all from test table 
          * 
          */
-        $stmt = $db->prepare("SELECT * FROM test"); 
+        $stmt = $db->prepare("SELECT * FROM test");
         $results = array();
         if ($stmt->execute() && $stmt->rowCount() > 0) {
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -60,15 +60,19 @@
         ?>
 
 
-       <h1><?php echo $message; ?> </h1>
-       
+        <h1><?php echo $message; ?> </h1>
+
 
         <table border="1">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>F Name</th>
+                    <th>Email</th>
+                    <th>Email</th>
+                    <th>Email</th>
+                    <th>Email</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <tbody>

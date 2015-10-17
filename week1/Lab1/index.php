@@ -7,7 +7,8 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Add Address</title>
+    <h1>Add Address</h1>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!-- Optional theme -->
@@ -17,8 +18,7 @@ and open the template in the editor.
         <!-- adds the hyper link to the index page -->
         
         <a href="views/add-address.php"> Add Address</a>
-        <br>
-        <a href="views/view-address.php"> View Address</a>
+       
         
         
     </body>

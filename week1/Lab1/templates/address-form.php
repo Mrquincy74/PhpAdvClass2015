@@ -22,16 +22,16 @@
                     <span class="input-group-addon" id="basic-addon2">@example.com</span>     
                 </div> 
             </div>
-        </div>
-
+        </div><!--
+-->
         <div class="form-group">
             <label for="addressline1" class="col-sm-2 control-label">Address</label>
             <div class="col-sm-5">
                 <input type="text" class="form-control" id="addressline1" 
                        value="<?php echo$addressLine1 ?>" name="addressline1" placeholder="Address">
             </div>
-        </div>
-        <div class="form-group">
+        </div><!--
+-->        <div class="form-group">
             <label for="city" class="col-sm-2 control-label">City</label>
             <div class="col-sm-5">
                 <input type="text" class="form-control" id="addressline1" 
@@ -52,15 +52,15 @@
                        value="<?php echo$zip ?>" name="zip" placeholder="Zip Code">
             </div>
         </div>
-<!--        <div class="form-group">
+        <div class="form-group">
             <label for="birthday" class="col-sm-2 control-label">Birth Date</label>
-            <div class="col-sm-2">
+            <div class="col-sm-3">
                 <input type="date" class="form-control" id="birthday" 
                        value="<1?php echo $birthDay ?>"  name="birthday" >
             </div>
-        </div>-->
+        </div>
 <input type="submit" value="Submit" class="btn-primary" />
-
+<br> <br>
     </form>
 </div>
 

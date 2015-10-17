@@ -14,7 +14,7 @@
         <?php
         require_once '../functions/dbconnect.php';
         require_once '../functions/util.php';
-        require_once '../classes/Validation.class.php';
+//        require_once '../classes/Validation.class.php';
 
         $fullName = filter_input(INPUT_POST, 'fullname');
         $email = filter_input(INPUT_POST, 'email');
@@ -23,72 +23,62 @@
         $state = filter_input(INPUT_POST, 'state');
         $zip = filter_input(INPUT_POST, 'zip');
         $birthDay = filter_input(INPUT_POST, 'birthday');
+        $err_message = array();
 
         if (isPostRequest()) {
 
+
             if (empty($fullName)) {
-                if (!preg_match('/^[a-zA-Z$]/', $fullName)) {
-                    $message = 'Full Name is an Invalid Format';
-                }
-            } else {
-                $message = 'Full Name is a required Field';
+                $err_message[] = 'Full name is a required Field.';
+            } else if (!preg_match('/^[a-zA-Z$]/', $fullName)) {
+                $err_message[] = 'Name is in an invalid format.';
             }
             if (empty($email)) {
-                $message = 'Email is a required Field';
+                $err_message [] = 'Email is a required Field';
             } else if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
 
-                 $message = 'Email is an Invalid Format';
+                $err_message [] = 'Email is an Invalid Format';
             }
-            if (!empty($addressLine1)) {
-                if (!preg_match('/^[0-9a-zA-Z. ]+$/', $addressLine1)) {
-                    $message = 'Address is an Invalid Format';
-                }
-            } else {
-                $message = 'Address is a required Field';
+            if (empty($addressLine1)) {
+                $err_message [] = 'Address is a required Field';
+            } else if (!preg_match('/^[0-9a-zA-Z. ]+$/', $addressLine1)) {
+                $err_message [] = 'Address is an Invalid Format';
             }
-            if (!empty($city)) {
-                if (!preg_match('/^[a-zA-Z$]/', $city)) {
-                    $message = 'City is an Invalid Format';
-                }
-            } else {
-                $message = 'City is a required Field';
+            if (empty($city)) {
+                $err_message [] = 'City is an required Format';
+            } else if (!preg_match('/^[a-zA-Z$]/', $city)) {
+                $err_message [] = 'City is a Invalid Field';
             }
-            if (!empty($state)) {
-                if (!preg_match('/^[a-zA-Z$]/', $state)) {
-                   $message = 'State is an Invalid Format';
-                }
-            } else {
-                $message = 'State is a required Field';
+            if (empty($state)) {
+                $err_message[] = 'State is an required Format';
+            } else if (!preg_match('/^[a-zA-Z$]/', $state)) {
+                $err_message[] = 'State is a Invalid  Field';
             }
-            if (!empty($zip)) {
-                if (!preg_match('/^[0-9]{5}(?:-[0-9]{4})?$/', $zip)) {
-                    $message = 'Zip Code is an Invalid Format';
-                }
-            } else {
-                $message = 'Zip Code is a required Field';
+//           
+            if (empty($zip)) {
+                $err_message[] = 'Zip Code is an required Format';
+            } else if (!preg_match('/^[0-9]{5}(?:-[0-9]{4})?$/', $zip)) {
+                $err_message[] = 'Zip Code is a Invalid  Field';
             }
-
-//            if (empty($birthDay)) {
-//                $message ='Date of Birth Required';
-//            }
-//            else if (!is_null($birthDay)) {
-//                date("F j, Y, g:i a", strtotime($birthDay));
-//             
-            //           } 
-             if (addAddressInfo($fullName, $email, $addressLine1, $city, $state, $zip)) {
-              $add_message = 'User Info Added';
+            if (empty($birthDay)) {
+                $err_message [] = 'Birth Date is a required Field';
+            } else if (!is_null($birthDay)) {
+                date("F j, Y, g:i a", str($birthDay));
+            } else if (addAddressInfo($fullName, $email, $addressLine1, $city, $state, $zip, $birthDay)) {
+                $message = 'User Info Added';
                 $fullName = '';
                 $email = '';
                 $addressLine1 = '';
                 $city = '';
                 $state = '';
                 $zip = '';
-//                $birthDay = '';
+                $birthDay = '';
             }
         }
         // put your code here
         include '../templates/address-form.php';
         include '../templates/message.php';
+        include '../templates/view-address.php';
         ?>
     </body>
 </html>

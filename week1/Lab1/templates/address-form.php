@@ -59,8 +59,10 @@
                        value="<1?php echo $birthDay ?>"  name="birthday" >
             </div>
         </div>
+
 <input type="submit" value="Submit" class="btn-primary" />
 <br> <br>
+            
     </form>
 </div>
 

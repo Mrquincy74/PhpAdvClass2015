@@ -12,7 +12,7 @@
  * @author 001356815
  */
 class Message implements IMessage{
-    private $messages = array ();
+    protected $messages = array ();
     
     public function addMessage($key, $msg) {
         $this->messages[$key] = $msg;
@@ -24,9 +24,12 @@ class Message implements IMessage{
         
     }
 
-
     //put your code here
      public function getAllMessages() {
-        return $this->messages();
+        return $this->messages;
     }
+     public function removeAllMessages() {
+        return $this->messages;
+    }
+    
 }

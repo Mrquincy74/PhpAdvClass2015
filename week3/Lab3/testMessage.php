@@ -11,17 +11,18 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-         include './models/IMessage.php';
-         include './models/Message.php';
+       include './bootstrap.php';
         
         // put your code here
-        $message = new Messages();
+        $message = new Message();
         
         $message->addMessage('test', 'my class message');
         
         var_dump($message->getAllMessages());
         echo '<br />';
-        var_dump($message instanceof IMessage);
+        var_dump($message instanceof IMessage);      
+        echo '<br />';
+         var_dump($message->removeMessage('test'));
         echo '<br />';
         var_dump($message->getAllMessages());
         echo '<br />';

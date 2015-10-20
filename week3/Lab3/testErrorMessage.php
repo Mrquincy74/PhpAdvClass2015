@@ -12,20 +12,20 @@ and open the template in the editor.
     <body>
         <?php
         // put your code here
-        include './models/IMessage.php';
-         include './models/ErrorMessage.php';
-         include './models/Message.php';
-        
+     include './bootstrap.php';
+
         // put your code here
         $message = new ErrorMessage();
-        
-        $message->ErrorMessage('test', 'my class message');
-        
-        var_dump($message->ErrorMessage());
+
+        $message->addMessage('test', 'my class message');
+
+        var_dump($message->getAllMessages());
         echo '<br />';
-        var_dump($message instanceof ErrorMessage);
+        var_dump($message instanceof IMessage);
         echo '<br />';
-        var_dump($message->ErrorMessage());
+        var_dump($message->removeMessage('test'));
+        echo '<br />';
+        var_dump($message->getAllMessages());
         echo '<br />';
         ?>
         ?>

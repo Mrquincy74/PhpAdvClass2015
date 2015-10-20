@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        include './models/IMessage.php';
+         include './models/IMessage.php';
          include './models/Message.php';
         
         // put your code here

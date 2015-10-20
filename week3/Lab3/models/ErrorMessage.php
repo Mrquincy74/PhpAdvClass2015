@@ -11,6 +11,6 @@
  *
  * @author 001356815
  */
-class ErrorMessage extends Message implements IMessage{
+class ErrorMessage extends Message {
     //put your code here
 }

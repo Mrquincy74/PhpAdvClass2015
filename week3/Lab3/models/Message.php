@@ -8,7 +8,7 @@
 
 /**
  * Description of Message
- *
+ *Message class implememts IMessage Class 
  * @author 001356815
  */
 class Message implements IMessage{

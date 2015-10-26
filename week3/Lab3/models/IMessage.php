@@ -1,6 +1,8 @@
 <?php
 
 /**
+ *IMessage class interface defines functionality 
+ * All methods declared in an interface must be public; 
  *
  * @author 001356815
  */

@@ -1,6 +1,5 @@
-
+<!-- Need to add if statement for post request -->
 <?php
-echo phpinfo();
 /**
  * Description of Signup
  *

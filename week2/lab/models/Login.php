@@ -12,5 +12,44 @@
  * @author GFORTI
  */
 class Login {
-    //put your code here
+
+    private $db;
+
+    function __construct() {
+
+        $util = new Util();
+        $dbo = new DB($util->getDBConfig());
+        $this->setDb($dbo->getDB());
+    }
+
+    private function getDb() {
+        return $this->db;
+    }
+
+    private function setDb($db) {
+        $this->db = $db;
+    }
+
+    public function verifyCheck($email, $password) {  
+        $stmt = $this->getDb()->prepare("SELECT * FROM users WHERE email = :email, password = :password");
+
+        $binds = array(
+            ":email" => $email,
+            ":password" => $password 
+            
+        );
+
+        if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+            return true;
+//            if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+//            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+//            if (password_verify($password, $results['password'])) {
+//                return $results['user_id'];
+        }
+        else {
+            return false;
+        }
+        
+    }
+
 }

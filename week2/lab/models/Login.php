@@ -31,11 +31,11 @@ class Login {
     }
 
     public function verifyCheck($email, $password) {  
-        $stmt = $this->getDb()->prepare("SELECT * FROM users WHERE email = :email, password = :password");
+        $stmt = $this->getDb()->prepare("SELECT * FROM users WHERE email = :email");
 
         $binds = array(
-            ":email" => $email,
-            ":password" => $password 
+            ":email" => $email
+//            ":password" => $password 
             
         );
 

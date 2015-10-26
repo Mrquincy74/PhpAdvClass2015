@@ -41,10 +41,10 @@
                 $user_id = $login->verifyCheck($email, $password);
                 if ($user_id <= 0) {
                     
-                    header('Location:login-form.html.php');
+                    header('Location: ./login-form.html.php');
                 }
                 else {
-                    header('Location:admin.php');
+                    header('Location: ./admin.php');
                 }
 //                if (isset($_SESSION['loggedin']))
 //                    $_SESSION['loggedin'] += 1;

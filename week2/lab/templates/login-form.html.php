@@ -3,10 +3,10 @@
     <div class="form-horizontal">
         <div class=".form-group">
             <div class="col-xs-4">
-                <label for="exampleInputEmail1">Email address</label>   
+                <label for="email">Email address</label>   
                 <div class="input-group">
                     <span class="input-group-addon">@</span>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email"
+                    <input type="text" class="form-control" id="email" placeholder="Email"
                            name="email" value="<?php echo $email; ?>">  <br/>
                 </div>
             </div>

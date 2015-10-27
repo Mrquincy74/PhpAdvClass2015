@@ -39,7 +39,7 @@
             if (count($errors) <= 0) {
 
                 $user_id = $login->verifyCheck($email, $password);
-                if ($user_id <= 0) {
+                if ($user_id > 0) {
                     $_SESSION['user_id'] = $user_id;
                     header('Location:admin.php');
                 } else {

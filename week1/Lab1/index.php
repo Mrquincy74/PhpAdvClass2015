@@ -15,7 +15,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     </head>
     <body>
-        <body>
+    
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -23,7 +23,7 @@ and open the template in the editor.
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="views/add-address.php"> Add Address</a></a></li> 
+        <li class="active"><a href="views/add-address.php"> Add Address</a></li> 
       </ul>
     </div>
   </div>

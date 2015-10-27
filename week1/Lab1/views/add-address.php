@@ -12,9 +12,9 @@
     <body>
 
         <?php
+        // includes the database connect class and the utility class 
         require_once '../functions/dbconnect.php';
         require_once '../functions/util.php';
-//        require_once '../classes/Validation.class.php';
 
         $fullName = filter_input(INPUT_POST, 'fullname');
         $email = filter_input(INPUT_POST, 'email');
@@ -25,6 +25,7 @@
         $birthDay = filter_input(INPUT_POST, 'birthday');
         $err_message = array();
 
+        // if statments with regex and fields empty message 
         if (isPostRequest()) {
 
 
@@ -63,8 +64,10 @@
             if (empty($birthDay)) {
                 $err_message [] = 'Birth Date is a required Field';
             } else if (!is_null($birthDay)) {
-                date("F j, Y, g:i a", str($birthDay));
-            } else if (addAddressInfo($fullName, $email, $addressLine1, $city, $state, $zip, $birthDay)) {
+                 date("F j, Y, g:i a",strtotime($birthDay)); 
+              
+            } 
+             if (addAddressInfo($fullName, $email, $addressLine1, $city, $state, $zip,$birthDay )) {
                 $message = 'User Info Added';
                 $fullName = '';
                 $email = '';
@@ -73,6 +76,7 @@
                 $state = '';
                 $zip = '';
                 $birthDay = '';
+               
             }
         }
         // put your code here

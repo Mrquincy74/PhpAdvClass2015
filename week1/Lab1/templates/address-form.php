@@ -1,5 +1,5 @@
 <br /><br />
-
+<!--Address Form styled with bootstrap  -->
 
 <h1>Address</h1> 
 <div class="container-fluid">
@@ -56,7 +56,7 @@
             <label for="birthday" class="col-sm-2 control-label">Birth Date</label>
             <div class="col-sm-3">
                 <input type="date" class="form-control" id="birthday" 
-                       value="<1?php echo $birthDay ?>"  name="birthday" >
+                       value="<?php echo $birthDay ?>"  name="birthday" >
             </div>
         </div>
 

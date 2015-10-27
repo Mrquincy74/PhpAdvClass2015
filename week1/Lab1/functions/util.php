@@ -30,9 +30,9 @@ function isGetRequest() {
  * 
  */
 
-function addAddressInfo($fullName, $email, $addressLine1, $city, $state, $zip, $birthDay) {
+function addAddressInfo($fullName, $email, $addressLine1, $city, $state, $zip,$birthDay ) {
     $db = dbconnect();
-    $stmt = $db->prepare("INSERT INTO address SET fullname = :fullname , email = :email, addressline1 = :addressline1, city = :city, state = :state, zip = :zip, birthday = :birthday ");
+    $stmt = $db->prepare("INSERT INTO address SET fullname = :fullname , email = :email, addressline1 = :addressline1, city = :city, state = :state, zip = :zip, birthday = :birthday");
     $binds = array(
         ":fullname" => $fullName,
         ":email" => $email,
@@ -40,7 +40,8 @@ function addAddressInfo($fullName, $email, $addressLine1, $city, $state, $zip, $
         ":city" => $city,
         ":state" => $state,
         ":zip" => $zip,
-        ":birthday" => $birthDay,
+        ":birthday"=> $birthDay
+       
     );
     if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
         return true;

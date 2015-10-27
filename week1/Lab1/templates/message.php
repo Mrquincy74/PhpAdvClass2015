@@ -1,4 +1,4 @@
-
+<!-- Displays the error messages in RED  and a success update message in Green   -->
 <?php if ( isset($message)) : ?>
     <p class="bg-success"><?php echo $message; ?></p>
 <?php endif; ?>

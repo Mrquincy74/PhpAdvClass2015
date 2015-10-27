@@ -15,7 +15,7 @@
     $addresses = getAlladdress();
     ?>
 
-
+<!-- Displays the table styled with bootstrap  -->
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
@@ -30,7 +30,8 @@
                     <th>Date of Birth</th> 
                 </tr>
             </thead>
-            <tbody>           
+            <tbody>  
+                <!-- uses a for each loop to display fields in a table --> 
                 <?php foreach ($addresses as $row): ?>
 
                     <tr>

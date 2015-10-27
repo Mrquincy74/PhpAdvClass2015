@@ -35,21 +35,15 @@ class Login {
 
         $binds = array(
             ":email" => $email
-//            ":password" => $password 
-            
         );
 
-        if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
-            return true;
-//            if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
-//            $results = $stmt->fetch(PDO::FETCH_ASSOC);
-//            if (password_verify($password, $results['password'])) {
-//                return $results['user_id'];
+           if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (password_verify($password, $results['password'])) {
+                return $results['user_id'];
+                
+            }
         }
-        else {
-            return false;
-        }
-        
     }
 
 }

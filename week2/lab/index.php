@@ -40,17 +40,13 @@
 
                 $user_id = $login->verifyCheck($email, $password);
                 if ($user_id <= 0) {
-                    
-                    header('Location: ./login-form.html.php');
+                    $_SESSION['user_id'] = $user_id;
+                    header('Location:admin.php');
+                } else {
+                    $errors = 'Login Failed!';
                 }
-                else {
-                    header('Location: ./admin.php');
-                }
-//                if (isset($_SESSION['loggedin']))
-//                    $_SESSION['loggedin'] += 1;
-//                else
-//                    $_SESSION['views'] = 1;
             }
+//               
         }
         ?>
 

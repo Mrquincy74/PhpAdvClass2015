@@ -16,6 +16,7 @@ try {
     
     // Undefined | Multiple Files | $_FILES Corruption Attack
     // If this request falls under any of them, treat it invalid.
+    // $_Files for files Super global value 
     if ( !isset($_FILES['upfile']['error']) || is_array($_FILES['upfile']['error']) ) {       
         throw new RuntimeException('Invalid parameters.');
     }
@@ -44,7 +45,7 @@ try {
     $validExts = array(
                     'jpg' => 'image/jpeg',
                     'png' => 'image/png',
-                    'gif' => 'image/gif',
+                    'gif' => 'image/gif'
                 );    
     $ext = array_search( $finfo->file($_FILES['upfile']['tmp_name']), $validExts, true );
     
@@ -56,13 +57,24 @@ try {
     // You should name it uniquely.
     // DO NOT USE $_FILES['upfile']['name'] WITHOUT ANY VALIDATION !!
     // On this example, obtain safe unique name from its binary data.
+    // 
     
     $fileName =  sha1_file($_FILES['upfile']['tmp_name']); 
-    $location = sprintf('./uploads/%s.%s', $fileName, $ext); 
+    $location = sprintf('./uploads/%s.%s', $fileName, $ext);
+    
+    // is_dir — Tells whether the filename is a directory
+       if (!is_dir('./uploads') ){
+           
+    //mkdir — Makes directory
+        mkdir('./uploads');
+        
+    }
         
     if ( !move_uploaded_file( $_FILES['upfile']['tmp_name'], $location) ) {
         throw new RuntimeException('Failed to move uploaded file.');
     }
+    
+ 
 
     echo 'File is uploaded successfully.';
 

@@ -26,7 +26,7 @@
         // error message array 
         $errors = array();
         
-       
+       // validator and signup checks validation from appropiate class 
         if ($util->isPostRequest()) {
             
             if ($validtor->emailIsEmpty($email)) {
@@ -42,7 +42,7 @@
             if ($signup->doesEmailExist($email)) {
                 $errors[] = 'Email already exisits';
             }
-
+           
             if (count($errors) <= 0) {
 
                 if ($signup->save($email, $password)) {

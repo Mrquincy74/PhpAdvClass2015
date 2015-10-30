@@ -23,6 +23,7 @@
         $state = filter_input(INPUT_POST, 'state');
         $zip = filter_input(INPUT_POST, 'zip');
         $birthDay = filter_input(INPUT_POST, 'birthday');
+        
         $err_message = array();
 
         // if statments with regex and fields empty message 
@@ -67,7 +68,7 @@
                  date("F j, Y, g:i a",strtotime($birthDay)); 
               
             } 
-             if (addAddressInfo($fullName, $email, $addressLine1, $city, $state, $zip,$birthDay )) {
+             if (count($err_message) === 0 && addAddressInfo($fullName, $email, $addressLine1, $city, $state, $zip,$birthDay )) {
                 $message = 'User Info Added';
                 $fullName = '';
                 $email = '';

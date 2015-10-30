@@ -43,7 +43,7 @@ and open the template in the editor.
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.php">Log Out</a></li> 
+        <li class="active"><a href="index.php" >Log Out</a></li> 
       </ul>
     </div>
   </div>

@@ -34,6 +34,9 @@
             if ($validtor->passwordIsEmpty($password)) {
                 $errors[] = 'Password is required';
             }
+             if (!$login->emailDoesnotExist($email)) {
+                $errors[] = 'Please sign up.';
+            }
             // if user logs in they will be directed to the admin page 
             // if not loged in return to login page 
             if (count($errors) <= 0) {
@@ -49,8 +52,6 @@
 //               
         }
         ?>
-
-        <h1>Login Form</h1>
 
         <?php include './templates/login-form.html.php'; ?>
         <?php include './templates/messages.html.php'; ?>

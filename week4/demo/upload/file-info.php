@@ -8,17 +8,20 @@
         <?php
         // put your code here
         
-        $file = '.'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'df7be9dc4f467187783aca68c7ce98e4df2172d0.jpg';
+        $file = '.'.DIRECTORY_SEPARATOR.'uploads'.DIRECTORY_SEPARATOR.'test.jpg';
         
-        // used to get a certain type of info you want to find 
+        //http://php.net/manual/en/fileinfo.constants.php
         $finfo = new finfo(FILEINFO_MIME_TYPE);
-        // get information from the file 
         $type = $finfo->file($file);
         
         var_dump($type);
-        // gets file size 
+        
+        //http://php.net/manual/en/function.filesize.php
         var_dump(filesize($file));
         
+        /*
+         * To delete a file use unlink
+         */
         
         ?>
     </body>

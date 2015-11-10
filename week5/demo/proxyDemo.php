@@ -88,6 +88,7 @@
                         // waiting for the call to complete
                     }
                 };
+                
                 //var username = 'test';
                // xmlhttp.setRequestHeader("Authorization", "Basic " + btoa(username + ":"));
 

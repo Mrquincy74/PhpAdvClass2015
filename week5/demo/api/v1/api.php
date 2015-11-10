@@ -1,7 +1,11 @@
 <?php
-
+// allows access you can control who access your page 
 header("Access-Control-Allow-Orgin: *");
+
+//
 header("Access-Control-Allow-Methods: GET, POST, UPDATE, DELETE");
+
+// content type goes 
 header("Content-Type: application/json; charset=utf8");
 
 try {
@@ -17,6 +21,8 @@ try {
         409 => 'Conflict',
         500 => 'Internal Server Error',
     );
+    
+    // responds with data or called payload
     $response = array(       
         "message" => NULL,
         "errors" => NULL,
@@ -31,10 +37,12 @@ try {
      * id = 4
      */
     $endpoint = filter_input(INPUT_GET, 'endpoint');
-    $restArgs = explode('/', rtrim($endpoint, '/'));    
+    $restArgs = explode('/', rtrim($endpoint, '/'));   
+    
+    // array gets the first array piece 
     $resource = array_shift($restArgs);
     $id = NULL;
-    
+    // checks to see 
     if ( isset($restArgs[0]) && is_numeric($restArgs[0]) ) {
         $id = intval($restArgs[0]);
     }
@@ -45,15 +53,17 @@ try {
      */
     
     $verb = filter_input(INPUT_SERVER, 'REQUEST_METHOD');
+    
     $verbs_allowed = array('GET','POST','PUT','DELETE');
     
+    // in_array is a built in function
     if ( !in_array($verb, $verbs_allowed) ) {
         throw new Exception("Unexpected Header Requested ". $verb);
     }
   
 
     /*
-    * set 'always_populate_raw_post_data = -1' so you can pass json
+    * set 'always_populate_raw_post_data = -1' (-1 means off) so you can pass json
     * to your rest server instead of post data  
     *
     */
@@ -125,7 +135,9 @@ try {
         }
                 
         if ( 'POST' === $verb ) {
-            $stmt = $db->prepare("INSERT INTO address SET fullname = :fullname, email = :email, addressline1 = :addressline1, city = :city, state = :state, zip = :zip, birthday = :birthday");
+            $stmt = $db->prepare("INSERT INTO address SET fullname = :fullname, email = :email, addressline1 = :addressline1, "
+                    . "city = :city, state = :state, "
+                    . "zip = :zip, birthday = :birthday");
             $binds = array(
                 ":fullname" => $data['fullname'],
                 ":email" => $data['email'],
@@ -159,10 +171,6 @@ try {
         //$response['errors'] = 'Resource Not Found';
         //$status = 404;
     }
-    
-    
-    
-
 
 } catch (InvalidArgumentException $e) {
     $response['errors'] = $e->getMessage();
@@ -173,6 +181,8 @@ try {
 }
 
 
-
+// webrowswer displays to user 
 header("HTTP/1.1 " . $status . " " . $status_codes[$status]);
+
+// echo's array as 
 echo json_encode($response, JSON_PRETTY_PRINT);

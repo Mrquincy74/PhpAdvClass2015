@@ -18,6 +18,7 @@
             <!-- Name of input element determines name in $_FILES array -->
             Send this file: <input name="upfile" type="file" />
             <input type="submit" value="Send File" />
+               <a href="View.php">View Files</a>
         </form>
         <?php
         // new instance of Util class        
@@ -27,12 +28,9 @@
         if ($util->isPostRequest()) {
             try {
                 $upfile = 'upfile';
-             
-                $upload_file = new Upload_file();
-                $upload_file->File_Parameters($upfile);
-                $upload_file->IsSizeValid($upfile);
-                $upload_file->File_Type($upfile);
-              
+                $upload_file = new Upload_file();           
+                $upload_file->addFile($upfile); 
+                //$upload_file->fileDelete($upfile); 
             } catch (RuntimeException $e) {
                 echo $e->getMessage();
             }

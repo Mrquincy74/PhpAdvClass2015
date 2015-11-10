@@ -1,7 +1,8 @@
 <?php
 
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * Upload File Class has appropriate funtions for adding files, uploading, mkdir folder,
+ * checks File Size,and deletes photo from a folder. 
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -45,7 +46,7 @@ class Upload_file {
     }
 
     /*
-     * File_Type function 
+     * File_TypeValid function 
      * $finfo built in php function Return information about a file
      * FILEINFO_MIME_TYPE returns mime type 
      */
@@ -86,52 +87,27 @@ class Upload_file {
         $fileName = sha1_file($_FILES[$upfile]['tmp_name']);
         $location = sprintf('./new_upload/%s.%s', $fileName, $ext);
         $this->moveFile($location, $upfile);
-        //$this->fileDelete($fileName);
     }
 
-    // is_dir — Tells whether the filename is a directory
+    //addFile calls appropiate functions if functions pass files are added to the folder directory
     public function addFile($upfile) {
 
         $this->File_Parameters($upfile);
         $this->IsSizeValid($upfile);
         $this->File_TypeValid($upfile);
-
-
-//        if (!is_dir('./new_upload')) {
-//
-//            //mkdir — Makes directory
-//            mkdir('./new_upload');
-//        }
-//
-//        if (!move_uploaded_file($_FILES[$upfile]['tmp_name'], $location)) {
-//            throw new RuntimeException('Failed to move uploaded file.');
-//        }
-//        echo 'File is uploaded successfully.';
     }
 
+// moves file to new_upload directory and makes drive folder
     public function moveFile($location, $upfile) {
         if (!is_dir('./new_upload')) {
-//
             //mkdir — Makes directory
             mkdir('./new_upload');
         }
-
         if (!move_uploaded_file($_FILES[$upfile]['tmp_name'], $location)) {
             throw new RuntimeException('Failed to move uploaded file.');
         }
         echo 'File is uploaded successfully.';
-        }
-
-//    public function fileDelete($fileName){
-//        
-//        if (file_exists($fileName)){
-//            $success = unlink($fileName);
-//            if ($success) {
-//                echo 'File was deleted';
-//            }
-//        }
-//        
-//    }
-//    //put your code here
     }
-    
+
+
+}

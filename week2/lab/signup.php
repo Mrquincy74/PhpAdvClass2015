@@ -1,10 +1,11 @@
+<!--includes all of my Classes -->
 <?php require_once './autoload.php'; ?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title></title>
-        <!-- Latest compiled and minified CSS -->
+       <!--Links in header allow bootstrap for styling  -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -13,18 +14,33 @@
 
     <body>
         <?php
+        /*
+         * delare variables 
+         * email
+         * password
+         */
         $email = filter_input(INPUT_POST, 'email');
         $password = filter_input(INPUT_POST, 'password');
 
-        // created instances of classes 
+        /* created new instances of classes
+         * 
+         */ 
         $util = new Util();
         $validtor = new Validator();
         $signup = new Signup();
 
-        // error message array 
+        /*
+         * error message array 
+         * creates the messages in an array on the page
+         */ 
         $errors = array();
 
-        // validator and signup checks validation from appropiate class 
+          /*isPostRequest that checks for the email and password
+         * If Email format, empty, and doesnt exist in the database is incorrect 
+           * you receive the appropiate message
+         * If password is empty or you havent sighned up you receive the appropiate message 
+         */ 
+        
         if ($util->isPostRequest()) {
 
             if ($validtor->emailIsEmpty($email)) {
@@ -40,7 +56,7 @@
             if ($signup->doesEmailExist($email)) {
                 $errors[] = 'Email already exisits';
             }
-            /** if $errors are less than 0  is TRUE a signup completed
+            /** if $errors are less than or equal to 0 is TRUE a signup completed
              * message id displayed.
              * else a sign
              */ 
@@ -55,12 +71,11 @@
             }
         }
         ?>        
-
+        <!--Includes for sign up form and messages/errors. -->
         <?php include './templates/messages.html.php'; ?>
-        <?php include './templates/errors.html.php'; ?>
-        <h1>Sign up Form</h1>
-
-        <?php include './templates/login-form.html.php'; ?>
+        <?php include './templates/errors.html.php'; ?>    
+        <?php include './templates/sign_up-form.php'; ?>
+        <!--Login link from the sign up page -->
         <a href="index.php">Log In</a>
 
     </body>

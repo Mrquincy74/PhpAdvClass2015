@@ -34,7 +34,7 @@ class Login {
         $stmt = $this->getDb()->prepare("SELECT * FROM users WHERE email = :email");
 
         $binds = array(
-            ":email" => $email
+            ":email" => $email,
         );
 
            if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
@@ -43,7 +43,7 @@ class Login {
                 return $results['user_id'];   
             }
         }
-        return false;
+        //return false;
     }
      public function emailDoesnotExist($email) {
 

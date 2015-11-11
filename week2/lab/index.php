@@ -1,27 +1,43 @@
-<?php require_once './autoload.php'; ?>
+<!--includes all of my Classes -->
+<?php require_once './autoload.php'; ?> 
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <!--Links in header allow bootstrap for styling  -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     </head>
     <body>
         <?php
+        /*
+         * delare variables 
+         * email
+         * password
+         */
         $email = filter_input(INPUT_POST, 'email');
         $password = filter_input(INPUT_POST, 'password');
-
+        
+        // instances of the classes 
         $util = new Util();
         $dbc = new DB($util->getDBConfig());
-        $validtor = new Validator();
-        $db = $dbc->getDB();
-        $login = new Login();
+        $validtor = new Validator(); //
+        $db = $dbc->getDB(); //gets the PDO by a function call 
+        $login = new Login(); // Login class
 
-        // error message array
+        /*
+         * error message array 
+         * creates the messages in an array on the page
+         */
         $errors = array();
-
+        
+        /*isPostRequest that checks for the email and password
+         * If Email format, empty, is incorrect you receive the appropiate message
+         * If password is empty or you havent sighned up you receive the appropiate message 
+         */ 
+        
         if ($util->isPostRequest()) {
 
             if ($validtor->emailIsEmpty($email)) {
@@ -37,8 +53,14 @@
              if (!$login->emailDoesnotExist($email)) {
                 $errors[] = 'Please sign up.';
             }
-            // if user logs in they will be directed to the admin page 
-            // if not loged in return to login page 
+            /* If the error counts less than equal to zero 
+             * your email and password will be verified by the verifyCheck
+             * function and a session will be started and you can log in 
+             *  Hooray for you.
+             *  If you have a user id in the database
+             * you can log in to the admin page if you do not your 
+             * Login will Fail. 
+             */ 
             if (count($errors) <= 0) {
 
                 $user_id = $login->verifyCheck($email, $password);
@@ -52,10 +74,12 @@
 //               
         }
         ?>
-
+        <!-- includes for the login form & messages/errors -->
         <?php include './templates/login-form.html.php'; ?>
         <?php include './templates/messages.html.php'; ?>
         <?php include './templates/errors.html.php'; ?>
+        <!--Sign up Link from this page-->
+          <a href="signup.php">Sign Up</a>
 
     </body>
 </html>

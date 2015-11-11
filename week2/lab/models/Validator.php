@@ -3,7 +3,7 @@
 /**
  * Description of Validator
  *
- * @author GFORTI
+ * @author 
  */
 class Validator {
     /**

@@ -20,7 +20,7 @@ else if (isset($_SESSION['user_id'])) {
     echo '<H2><a href="?logout=true" >Log Out</a></H2>';
 }
 ?>
-<!DOCTYPE html>
+
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -28,26 +28,28 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<style type="text/css">
-	.bs-example{
-    	margin: 20px;
-    }
-</style>
-</head> 
-<body>
-<div class="bs-example">
-	<div class="alert alert-info">
-        <a href="#" class="close" data-dismiss="alert">&times;</a>
-        <h2>Welcome to The Admin Page</h2>
-	<div class="embed-responsive embed-responsive-4by3">
-		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Vn0xu5UJrEo?rel=&autoplay=1"  frameborder="0" allowfullscreen>"></iframe>
-	</div>
-</div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <style type="text/css">
+            .bs-example{
+                margin: 20px;
+            }
+        </style>
+    </head> 
+    <body>
+        <div class="bs-example">
+            <div class="alert alert-info">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <h2>Welcome to The Admin Page</h2>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Vn0xu5UJrEo?rel=&autoplay=1"  frameborder="0" allowfullscreen>"></iframe>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>                                		

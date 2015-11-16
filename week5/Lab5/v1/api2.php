@@ -6,10 +6,9 @@
 try {
 
     $restServer = new RestServer ();
-    $restServer->setStatus(200);
-     $restServer->getResource();
+    $restServer->setStatus(500);
+    echo $restServer->getResource();
     echo $restServer->getId();
-    
 } catch (Exception $ex) {
     $restServer->setErrors($ex->getMessage());
 }

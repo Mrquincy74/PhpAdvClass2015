@@ -28,23 +28,23 @@
         <br />
         <br />
         Resource for endpoint:<br />
-        <input name="resource" value="corps" />
+        <input name="resource" value="address" />
         <br />
         <br />
         Data(optional):<br />   
-        Corporation Name <input type="text" name="corp" value="" />
+        fullname <input type="text" name="fullname" value="" />
         <br />
-<!--        Corp Date Established <input type="datetime" name="incorp_dt" value="" />-->
+        email <input type="email" name="email" value="" />
         <br />
-        Email <input type="email" name="email" value="" />
+        addressline1 <input type="text" name="addressline1" value="" />
         <br />
-        Owner <input type="text" name="owner" value="" />
+        city <input type="text" name="city" value="" />
         <br />
-        Phone <input type="text" name="phone" value="" />
+        state <input type="text" name="state" list="states" placeholder="Find U.S. State">
         <br />
-        Location <input type="text" name="location" list="states" placeholder="Find U.S. State">
+        zip <input type="number" pattern="[0-9]*" maxlength="5" min="0" name="zip">
         <br />
-<!--        zip <input type="number" pattern="[0-9]*" maxlength="5" min="0" name="zip">-->
+        birthday <input type="date" name="birthday">
         <br />
         <br />
         <button>Make Call</button>
@@ -63,21 +63,19 @@
                 var verb = verbfield.options[verbfield.selectedIndex].value;
                 var resource = document.querySelector('input[name="resource"]').value;
                 var data = {
-                    'corp' : document.querySelector('input[name="corp"]').value,
-                   
+                    'fullname' : document.querySelector('input[name="fullname"]').value,
                     'email' : document.querySelector('input[name="email"]').value,
-                    'owner' : document.querySelector('input[name="owner"]').value,
-                    'phone' : document.querySelector('input[name="phone"]').value,
-                    'location' : document.querySelector('input[name="location"]').value
-                     //'incorp_dt' : document.querySelector('input[name="incorp_dt"]').value,
-//                    'zip' : document.querySelector('input[name="zip"]').value,
-//                    'birthday' : document.querySelector('input[name="birthday"]').value
+                    'addressline1' : document.querySelector('input[name="addressline1"]').value,
+                    'city' : document.querySelector('input[name="city"]').value,
+                    'state' : document.querySelector('input[name="state"]').value,
+                    'zip' : document.querySelector('input[name="zip"]').value,
+                    'birthday' : document.querySelector('input[name="birthday"]').value
                 };            
                 var results = document.querySelector('textarea[name="results"]');
 
                 var xmlhttp = new XMLHttpRequest();
 
-                var url = './api/v1/' + resource;
+                var url = 'v1/api2' + resource;
 
                 xmlhttp.open(verb, url, true);
 
@@ -90,7 +88,6 @@
                         // waiting for the call to complete
                     }
                 };
-                
                 //var username = 'test';
                // xmlhttp.setRequestHeader("Authorization", "Basic " + btoa(username + ":"));
 

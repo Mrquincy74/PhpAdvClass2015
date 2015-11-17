@@ -12,9 +12,10 @@
  */
 interface iRestModel {
     //put your code here
+    
     function getAll();
     function get($id);
-    function post ($serverData);
+    function post ($getData);
     // put means update
     function put($id);
     function delete ($id);

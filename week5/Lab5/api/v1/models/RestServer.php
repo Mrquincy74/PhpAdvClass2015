@@ -34,10 +34,10 @@ class RestServer {
         "data" => NULL
     );
     // sets the id to private 
-    private $id;
-    private $resource;
-    private $verb;
-    private $server_data;
+    private $id; 
+    private $resource; //resource variable 
+    private $verb; //verb variable 
+    private $serverData; // serverData variable 
 
     // constructor  includes headers, getRestArgs, setVerb 
     public function __construct() {
@@ -56,6 +56,37 @@ class RestServer {
 
         $this->getRestArgs();
         $this->setVerb();
+        $this->setServerData();
+    }
+    
+       function getServerData() {
+        return $this->serverData;
+    }
+    /*
+     * setServerData function sets server data as Json 
+     */
+    private function setServerData() {
+        if (strpos(filter_input(INPUT_SERVER, 'CONTENT_TYPE'), "application/json") !== false) {
+            $this->serverData = json_decode(trim(file_get_contents('php://input')), true);
+
+
+            switch (json_last_error()) {
+                case JSON_ERROR_NONE: { //data UTF-8 compliant
+                        //tell client to recieve JSON data and send           
+                    }
+                    break;
+                case JSON_ERROR_SYNTAX:
+                case JSON_ERROR_UTF8:
+                case JSON_ERROR_DEPTH:
+                case JSON_ERROR_STATE_MISMATCH:
+                case JSON_ERROR_CTRL_CHAR:
+                    throw new Exception(json_last_error_msg());
+                    break;
+                default:
+                    throw new Exception('JSON encode error Unknown error');
+                    break;
+            }
+        }
     }
 
     // sets the response array for the messages 
@@ -76,7 +107,7 @@ class RestServer {
         return $this->status;
     }
 
-    public function getMessage($message) {
+    public function setMessage($message) {
         $this->response ["message"] = $message;
     }
 
@@ -124,34 +155,7 @@ class RestServer {
         }
     }
 
-    function getServer_data() {
-        return $this->server_data;
-    }
-
-    function setServer_data() {
-        if (strpos(filter_input(INPUT_SERVER, 'CONTENT_TYPE'), "application/json") !== false) {
-            $this->server_data = json_decode(trim(file_get_contents('php://input')), true);
-
-
-            switch (json_last_error()) {
-                case JSON_ERROR_NONE: { //data UTF-8 compliant
-                        //tell client to recieve JSON data and send           
-                    }
-                    break;
-                case JSON_ERROR_SYNTAX:
-                case JSON_ERROR_UTF8:
-                case JSON_ERROR_DEPTH:
-                case JSON_ERROR_STATE_MISMATCH:
-                case JSON_ERROR_CTRL_CHAR:
-                    throw new Exception(json_last_error_msg());
-                    break;
-                default:
-                    throw new Exception('JSON encode error Unknown error');
-                    break;
-            }
-        }
-    }
-
+    // sets the verb and returns the private verb variable 
     public function getVerb() {
 
         return $this->verb;

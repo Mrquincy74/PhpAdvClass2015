@@ -5,7 +5,7 @@
  * include must be the name of the folder the classes are in
  */
 function load_lib($class) {
-    include 'models/'.$class . '.php';
+    include '/models/'.$class . '.php';
 };
 spl_autoload_register('load_lib');
-session_start();
+

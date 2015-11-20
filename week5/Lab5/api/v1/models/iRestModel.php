@@ -9,6 +9,8 @@
 /**
  *
  * @author 001356815
+ *  specifies which methods a class must implement, 
+ * without having to define how these methods are handled.
  */
 interface iRestModel {
     //put your code here
@@ -17,7 +19,7 @@ interface iRestModel {
     function get($id);
     function post ($getData);
     // put means update
-    function put($id);
+    function put($getData,$id);
     function delete ($id);
     
     

@@ -10,6 +10,8 @@
  * Description of CorpResource
  *
  * @author 001356815
+ * iRestModel implements specifies methods a class must implement, 
+ * without having to define how these methods are handled.
  */
 class Corporations implements iRestModel {
 
@@ -67,14 +69,16 @@ class Corporations implements iRestModel {
         /*
          * creates an array of the results 
          */
-        $results = array();
+        $dataResults = array();
 
         /*
          * getsDb function then 
          * returns all from corps where id = id
          */
         $stmt = $this->getDb()->prepare("SELECT * FROM corps WHERE id = :id");
-        $binds = array(":id" => $id);
+        $binds = array(
+            ":id" => $id
+        );
         /*
          * executes the statment ans binds it to id 
          * if counts greater than zero 
@@ -83,14 +87,10 @@ class Corporations implements iRestModel {
             /*
              * all results are returned 
              */
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $dataResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        return $results;
+        return $dataResults;
     }
-
-//    function post($serverData) {
-//        
-//    }
     public function post($getData) {
         /* note you should validate before adding to the data base */
         $stmt = $this->getDb()->prepare("INSERT INTO corps SET corp = :corp, incorp_dt = :incorp_dt, email = :email, owner = :owner, phone = :phone, location = :location");
@@ -105,31 +105,33 @@ class Corporations implements iRestModel {
 
         if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
             return true;
-        } 
-        return false;
-    }
-
-    // put means update
-    public function put($id) {
-        $stmt = $this->getDb()->prepare("UPDATE corps SET corp = :corp, incorp_dt = :incorp_dt, "
-                . "email = :email1,  owner = :owner, phone = :phone, location = :location WHERE id= :id");
-        $binds = array(
-            ":corp" => $id['corp'],
-            ":incorp_dt" => $id['incorp_dt'],
-            ":email" => $id['email'],
-            ":owner" => $id['owner'],
-            ":phone" => $id['phone'],
-            ":location" => $id['location']
-        );
-
-        if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
-            echo "Record updates sucessfully" .$id;
         }
         return false;
     }
 
-    public function delete($id) {
+    // put means update
+    public function put($getData, $id) {
+        $dataResults = array();
+  // statment updates table             
+        $stmt = $this->getDb()->prepare("UPDATE corps SET corp = :corp, incorp_dt = :incorp_dt, email = :email, owner = :owner, phone = :phone, location = :location WHERE id= :id  ");
+        $binds = array(
+            ":id" => $id,
+            ":corp" => $getData['corp'],
+             ":incorp_dt" => $getData ['incorp_dt'],
+            ":email" => $getData['email'],
+            ":owner" => $getData['owner'],
+            ":phone" => $getData['phone'],
+            ":location" => $getData['location']
+        );
+        if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+            $dataResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            echo "Record updates sucessfully" . $id;
+        }
+        return $dataResults;
+    }
 
+    public function delete($id) {
+            $results = false;
         $stmt = $this->getDb()->prepare("DELETE FROM corps Where id = :id");
         $binds = array(":id" => $id);
 

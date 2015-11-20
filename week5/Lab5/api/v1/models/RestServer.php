@@ -34,7 +34,7 @@ class RestServer {
         "data" => NULL
     );
     // sets the id to private 
-    private $id; 
+    private $id; //id variable 
     private $resource; //resource variable 
     private $verb; //verb variable 
     private $serverData; // serverData variable 
@@ -57,6 +57,7 @@ class RestServer {
         $this->getRestArgs();
         $this->setVerb();
         $this->setServerData();
+        $this->getId();
     }
     
        function getServerData() {

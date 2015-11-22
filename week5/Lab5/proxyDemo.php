@@ -3,6 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     </head>
     <body>
         <style type="text/css">
@@ -39,11 +42,11 @@
         <br />
         Owner <input type="text" name="owner" value="" />
         <br />
-        Phone <input type="tel" pattern='[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}'name="phone" value="" />
+        Phone <input type="tel" pattern='[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}' name="phone" value="" />
         <br />
         Location <input type="text" name="location" list="states" placeholder="Find U.S. State">       
         <br />
-        <button>Make Call</button>
+        <button>Make Call</button>     
         <h3>Results</h3>
 
         <textarea name="results"></textarea>

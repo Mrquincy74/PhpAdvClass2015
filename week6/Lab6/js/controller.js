@@ -5,11 +5,11 @@ var appControllers = angular.module('appControllers', []);
 appControllers.controller('CorpsCtrl', ['$scope', '$log', 'corpsProvider',
     function ($scope, $log, corpsProvider) {
         //array of scope.corps
-        $scope.corps = [];
+        $scope.coporations = [];
 
         function getCorporations() {
             corpsProvider.getAllCorporations().success(function (response) {
-                $scope.corps = response.data;
+                $scope.coporations = response.data;
             }).error(function (response, status) {
                 $log.log(response);
             });

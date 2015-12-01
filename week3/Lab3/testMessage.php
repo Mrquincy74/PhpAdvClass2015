@@ -11,20 +11,20 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-       include './bootstrap.php';
+       include './autoload.php';
         
         // put your code here
         $message = new Message();
         
-        $message->addMessage('test', 'my class message');
+        $message->addMessage('Knock Knock ', 'Who is Knocking?');
         
         var_dump($message->getAllMessages());
-        echo '<br />';
+        //echo '<br />';
         var_dump($message instanceof IMessage);      
+        //echo '<br />';
+         var_dump($message->removeMessage('Knock Knock'));
         echo '<br />';
-         var_dump($message->removeMessage('test'));
-        echo '<br />';
-        var_dump($message->getAllMessages());
+       // var_dump($message->getAllMessages());
         echo '<br />';
         ?>
     </body>

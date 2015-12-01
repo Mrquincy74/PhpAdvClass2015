@@ -13,7 +13,7 @@ and open the template in the editor.
     <body>
         <?php
         session_start();
-         include './bootstrap.php';
+         include './autoload.php';
          
          $flashMessage = new FlashMessage();
          $message = $flashMessage->getAllMessages();

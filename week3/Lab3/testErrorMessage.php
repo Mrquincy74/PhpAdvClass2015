@@ -8,26 +8,33 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
+         <div class="bg-danger message-box">
         <?php
         // put your code here
-     include './bootstrap.php';
+     include './autoload.php';
 
         // put your code here
-        $message = new ErrorMessage();
+        $errorMessage = new ErrorMessage();
 
-        $message->addMessage('test', 'my class message');
+        $errorMessage->addMessage('test Error Message', 'My Error Message class message');
 
-        var_dump($message->getAllMessages());
+        var_dump($errorMessage->getAllMessages());
         echo '<br />';
-        var_dump($message instanceof IMessage);
+        var_dump($errorMessage instanceof IMessage);
         echo '<br />';
-        var_dump($message->removeMessage('test'));
+        var_dump($errorMessage->removeMessage('test'));
         echo '<br />';
-        var_dump($message->getAllMessages());
+        var_dump($errorMessage->getAllMessages());
         echo '<br />';
         ?>
-        ?>
+         </div>
     </body>
 </html>

@@ -1,30 +1,45 @@
 
-   <h1>Corporation Table</h1>
+<html>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+<body>
+    <h1>Corporation Table</h1>
 
-<div class="content">
-    
-    <h3>Search</h3>
-    <!-- https://docs.angularjs.org/api/ng/filter/filter -->
-    <br />
-    <br /> 
-    
-    <table class="gridtable">
-        <thead>
-            <tr>
-                <th>Owner</th>
-                <th>Email</th>                
-                <th>Phone Number</th>                
-                <th></th>
-            </tr>
-        </thead>    
+    <div class="content">
+
+
+
+        <!-- https://docs.angularjs.org/api/ng/filter/filter -->
+        <br />
+        <br /> 
+        Search Owner Name Only: <input ng-model="search.owner"><br>
         
-        <tr ng-repeat="coporation in coporations">
-            <td>{{coporation.owner | uppercase}}</td>                  
-            <td>{{coporation.email}}</td>
-            <td><a ng-href="#/corporation/{{coporation.id}}">View</a></td>
-        </tr>
-    </table>
-        
-</div>
-    </body>
+        <div class="table table-reflow">
+            <table class="table table-bordered" id="searchObjResults" >
+                <thead class="thead-inverse">
+                    <tr>                       
+                        <th>#Owner</th>
+                        <th>Email</th> 
+                        <th>Phone Number</th>
+                        <th>View</th>                            
+                    </tr>
+                </thead>    
+                <tbody>
+                <tr ng-repeat="corporation in corporations| filter:search:strict">
+                    <td>{{corporation.owner| uppercase}}</td>                  
+                    <td>{{corporation.email}}</td>
+                    <td>{{corporation.phone}}</td>
+                    <td><a ng-href="#/corps/{{corporation.id}}">View</a></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</body>
 </html>

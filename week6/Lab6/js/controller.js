@@ -4,12 +4,12 @@ var appControllers = angular.module('appControllers', []);
 // controller for getting corporations 
 appControllers.controller('CorpsCtrl', ['$scope', '$log', 'corpsProvider',
     function ($scope, $log, corpsProvider) {
-        //array of scope.corps
-        $scope.coporations = [];
+        
+        $scope.corporations = [];
 
         function getCorporations() {
             corpsProvider.getAllCorporations().success(function (response) {
-                $scope.coporations = response.data;
+                $scope.corporations = response.data;
             }).error(function (response, status) {
                 $log.log(response);
             });
@@ -26,17 +26,38 @@ appControllers.controller('CorpsCtrl', ['$scope', '$log', 'corpsProvider',
        var corpsID = $routeParams.corpsId;
         
        function getCorporation() {    
-            corpsProvider.getCorporations(corpsID).success(function(response) {
-                $scope.corps = response.data;
-                // formats birthdate
-               // $scope.address.birthday = new Date($scope.address.birthday);                
-                console.log($scope.corps);
+            corpsProvider.getCorporation(corpsID).success(function(response) {
+                $scope.corporations = response.data[0];
+                loadMap($scope.corporations.location);
+                console.log($scope.corporations);
+                console.log(corpsID);
             }).error(function (response, status) {
                $log.log(response);
             });
         };
 
         getCorporation();
+        
+        
+        function loadMap(location) {
+
+        var lat = location.split(',')[0];
+        var long = location.split(',')[1];
+
+            var myCenter = new google.maps.LatLng(lat, long);
+
+                var mapProp = {
+                    center: myCenter,
+                    zoom: 6,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP, 
+                };
+                var map = new google.maps.Map(document.getElementById('googleMap'), mapProp);
+                var marker = new google.maps.Marker({
+                    position: myCenter
+                });
+                marker.setMap(map);
+
+        }
         
         
     

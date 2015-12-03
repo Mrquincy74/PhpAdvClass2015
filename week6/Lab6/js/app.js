@@ -29,7 +29,7 @@ myApp.constant('config', {
 myApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-        when('/', {
+        when('/', {        
             templateUrl: 'partials/corporations.html',
             controller: 'CorpsCtrl'
         }).

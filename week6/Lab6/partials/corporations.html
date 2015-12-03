@@ -30,7 +30,7 @@
                     </tr>
                 </thead>    
                 <tbody>
-                <tr ng-repeat="corporation in corporations| filter:search:strict">
+                <tr ng-repeat="corporation in corporations| filter:search">
                     <td>{{corporation.owner| uppercase}}</td>                  
                     <td>{{corporation.email}}</td>
                     <td>{{corporation.phone}}</td>

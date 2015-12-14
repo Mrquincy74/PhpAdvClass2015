@@ -3,6 +3,7 @@
         <div class="col-lg-5 col-lg-offset-1">
              <h1>Photo Log-In<small></small></h1>
                 <form action="#" method="post" > 
+                     <a href="view.php">View Images</a>
                 <div class="form-group">
                     <div class="col-xs-4">
                         <label  class="sr-only" for="email">Email address</label>

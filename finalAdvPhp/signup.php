@@ -70,7 +70,7 @@
                 if ($signup->save($email, $password)) {
                     $message = 'Signup complete';
                 } else {
-                    $errors = 'Signup failed';
+                    $errors []= 'Signup failed';
                 }
             }
         }

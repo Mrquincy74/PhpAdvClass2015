@@ -93,6 +93,7 @@
                 if ($user_id > 0) {
                     $_SESSION['user_id'] = $user_id;
                     header('Location:addfile.php');
+                    
                 } else {
                     $errors = 'Login Failed!';
                 }

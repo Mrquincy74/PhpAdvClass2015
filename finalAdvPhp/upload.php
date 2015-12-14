@@ -1,5 +1,7 @@
-<?php
 
+<?php
+session_start();
+require_once './autoload.php';
 header("Access-Control-Allow-Orgin: *");
 header("Content-Type: application/json; charset=utf8");
 
@@ -71,7 +73,7 @@ try {
 
     $salt = uniqid(mt_rand(), true);
     $fileName = 'img_' . sha1($salt . sha1_file($_FILES['upfile']['tmp_name']));
-    
+
     if (!is_dir('./uploads')) {
         mkdir('./uploads');
     }
@@ -185,17 +187,21 @@ try {
 
     imagedestroy($rImg);
     imagedestroy($image_p);
-    
-   
+
+
 
     /*
       if ( !move_uploaded_file( $_FILES["upfile"]["tmp_name"], $location) ) {
-        throw new RuntimeException('Failed to move uploaded file.');
+      throw new RuntimeException('Failed to move uploaded file.');
       }
 
      */
-
-    $message = 'File is uploaded successfully.';
+     $util = new Util(); //connects to the database 
+  $upload_save = new Upload_Save(); // new instance o$util = new Util(); //connects to the database f Upload_Save Class 
+  $upload_save->save_ImageUpload(($_SESSION['user_id']), $filename);
+  $message = 'File is uploaded successfully.';
+ 
+    
 } catch (RuntimeException $e) {
 
     $message = $e->getMessage();

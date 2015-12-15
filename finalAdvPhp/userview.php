@@ -1,4 +1,6 @@
-<?php require_once './autoload.php'; 
+<?php
+
+require_once './autoload.php';
 $logout = filter_input(INPUT_GET, 'logout');
 
 // if logout == 1 the session user_id = zero 
@@ -14,22 +16,29 @@ if (!isset($_SESSION['user_id'])) {
 // else if user_id session isset the user's 
 // directed to the admin page
 else if (isset($_SESSION['user_id'])) {
-    echo '<H2><a href="?logout=true" >Log Out</a></H2>';
- 
-            $directory = '.' . DIRECTORY_SEPARATOR . 'uploads';
+    $util = new Util();
+    if ($util->isPostRequest()) {
+        $imgname = filter_input(INPUT_POST, 'imgname');
+        $delete_Img = new Userimg();
+    $delete_Img->deleteUserImg($imgname); }
 
-            $util = new Util(); //connects to the database 
-            $userimg = new Userimg(); //new instance for Userimg.php 
-            $userimages = array();
-            $userimgages = $userimg->showUserImg($_SESSION['user_id']);
-        foreach ($userimages as $things){
-            echo '<img=src="'.$directory.'//'.$things['filname'].'."/>';
+        echo '<H2><a href="?logout=true" >Log Out</a></H2>';
+        echo '<H2><a href="addfile.php" >Upload Page</a></H2>';
+        $directory = '.' . DIRECTORY_SEPARATOR . 'uploads';
+
+        $util = new Util(); //connects to the database 
+        $userimg = new Userimg(); //new instance for Userimg.php 
+        $userimages = array();
+        $userimages = $userimg->showUserImg($_SESSION['user_id']);
+        //print_r($userimages);
+        echo $directory;
+        foreach ($userimages as $things) {
+            //echo $things['filename'];
+            echo '<img src="' . $directory . '\\' . $things['filename'] . '."/></br>';
+            echo '<form action="#" method="POST">'
+            . '<input class="deletebtn" type="sumbit" value="Delete"/>'
+            . '<input type="hidden" value="' . $things['filename'] . '" name="imgname"/></form>';
         }
-
-
-            
-                
-
-          
-        }
+    
+}
 ?>

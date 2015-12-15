@@ -45,19 +45,16 @@ class Userimg {
     /*
      * Deletes File from Data Base 
      */
-    public function deleteUserImg ($user_id, $photo_id){
-      $stmt = $this->getDb()->prepare('Delete * FROM photos WHERE user_id = :user_id, photo_id = :photo_id');
+    public function deleteUserImg ($imgname){
+      $stmt = $this->getDb()->prepare('Delete FROM photos WHERE filename = :filename');
        $binds = array (
-            "user_id" => $user_id,
-            "photo_id" => $photo_id
+            "filename" => $imgname         
         );
        if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
             $results = $stmt->fetch(PDO::FETCH_ASSOC);
-        }
-        
+        }        
         return $results;
-                
-    
+
     }
     
 

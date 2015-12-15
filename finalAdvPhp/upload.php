@@ -198,6 +198,7 @@ try {
      */
   $util = new Util(); //connects to the database 
   $upload_save = new Upload_Save(); // new instance o$util = new Util(); //connects to the database f Upload_Save Class 
+  $fileName .= '.'.$ext; // appends file ext 
   $upload_save->save_ImageUpload(($_SESSION['user_id']), $fileName);
   $message = 'File is uploaded successfully.';
  

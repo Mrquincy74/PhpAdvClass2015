@@ -33,7 +33,7 @@
     </head>
     <body>
         <?php
-      echo ($_SESSION['user_id']);
+      //echo ($_SESSION['user_id']);
         
         $util = new Util(); //connects to the database 
         //$upload_save = new Upload_Save(); // new instance of Upload_Save Class 
@@ -62,6 +62,7 @@ else if (isset($_SESSION['user_id'])) {
         <h2>Image Files</h2>
         <p>
             <a href="view.php">View Images</a>
+            <a href="userview.php">View My Images</a>
         </p>
         <p>
         <form>
@@ -178,7 +179,7 @@ else if (isset($_SESSION['user_id'])) {
                     } else if (fileList[0].type.match(textType)) {
                         readTexImg(fileList[0]);
                     } else {
-                        fileContentPaneImg.innerHTML = "File not supported!";
+                        fileContentPaneImg.innerHTML = "File not supported Java!";
                         imageReady = false;
                     }
                 }
@@ -208,9 +209,6 @@ else if (isset($_SESSION['user_id'])) {
 
 
         }
-
-
-
 
 
         function uploadImage() {

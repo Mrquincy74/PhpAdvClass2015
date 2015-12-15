@@ -29,6 +29,38 @@ class Userimg {
     private function setDb($db) {
         $this->db = $db;
     }
+    /*
+     * Deletes File Name 
+     */
+    public function f_Delete($file) {
+
+        if (unlink('./new_upload/' . $file)) {
+            throw new RuntimeException('File not Deleted' . $file);
+            //echo "Deleted $file!\n";
+        } else {
+            echo 'File Deleted' . '' . $file;
+        }
+    }
+    
+    /*
+     * Deletes File from Data Base 
+     */
+    public function deleteUserImg ($user_id, $photo_id){
+      $stmt = $this->getDb()->prepare('Delete * FROM photos WHERE user_id = :user_id, photo_id = :photo_id');
+       $binds = array (
+            "user_id" => $user_id,
+            "photo_id" => $photo_id
+        );
+       if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        
+        return $results;
+                
+    
+    }
+    
+
 
      public function showUserImg($user_id) {
 
@@ -37,10 +69,11 @@ class Userimg {
         $binds = array(
             ":user_id" => $user_id
         );
+        $results = array();
         if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
-            return true;
+             $results = $stmt->fetchAll(PDO::FETCH_ASSOC); 
         }
-        return false;
+        return $results;
     }
 
 }

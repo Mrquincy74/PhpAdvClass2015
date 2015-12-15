@@ -1,6 +1,6 @@
 
 <?php
-session_start();
+//session_start();
 require_once './autoload.php';
 header("Access-Control-Allow-Orgin: *");
 header("Content-Type: application/json; charset=utf8");
@@ -196,9 +196,9 @@ try {
       }
 
      */
-     $util = new Util(); //connects to the database 
+  $util = new Util(); //connects to the database 
   $upload_save = new Upload_Save(); // new instance o$util = new Util(); //connects to the database f Upload_Save Class 
-  $upload_save->save_ImageUpload(($_SESSION['user_id']), $filename);
+  $upload_save->save_ImageUpload(($_SESSION['user_id']), $fileName);
   $message = 'File is uploaded successfully.';
  
     
